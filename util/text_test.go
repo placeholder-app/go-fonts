@@ -1,14 +1,15 @@
-package util
+package util_test
 
 import (
 	"testing"
 
+	a "github.com/james-elicx/go-utils/assert"
 	"github.com/placeholder-app/go-fonts/deflated"
-	a "github.com/placeholder-app/go-fonts/util/assert"
+	"github.com/placeholder-app/go-fonts/util"
 )
 
 func TestGetFontFace(t *testing.T) {
-	parsed := ParseFont(deflated.CalSansSemiBold)
+	parsed := util.ParseFont(deflated.CalSansSemiBold)
 	face := parsed.GetFontFace(12, 72)
 	faceFromStorage := parsed.GetFontFace(12, 72)
 
@@ -17,7 +18,7 @@ func TestGetFontFace(t *testing.T) {
 }
 
 func TestGetTextData(t *testing.T) {
-	parsed := ParseFont(deflated.CalSansSemiBold)
+	parsed := util.ParseFont(deflated.CalSansSemiBold)
 	face := parsed.GetFontFace(12, 72)
 
 	textData := parsed.GetTextData(face, "Hello World")

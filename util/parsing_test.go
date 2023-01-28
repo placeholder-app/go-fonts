@@ -1,15 +1,16 @@
-package util
+package util_test
 
 import (
 	"testing"
 
+	a "github.com/james-elicx/go-utils/assert"
 	"github.com/placeholder-app/go-fonts/deflated"
-	a "github.com/placeholder-app/go-fonts/util/assert"
+	"github.com/placeholder-app/go-fonts/util"
 	"github.com/placeholder-app/go-fonts/util/gen"
 )
 
 func TestParseFont(t *testing.T) {
-	parsed := ParseFont(deflated.CalSansSemiBold)
+	parsed := util.ParseFont(deflated.CalSansSemiBold)
 
 	a.Equals(t, parsed.Name, "Cal Sans")
 	a.Equals(t, parsed.Weight, "SemiBold")
@@ -20,12 +21,12 @@ func TestParseFont(t *testing.T) {
 
 func TestParseFontFails(t *testing.T) {
 	a.Throws(t, func() {
-		ParseFont(deflated.DeflatedFont{})
+		util.ParseFont(deflated.DeflatedFont{})
 	})
 
 	a.Throws(t, func() {
 		deflatedBytes, _ := gen.DeflateFont([]byte{0xcc})
-		ParseFont(deflated.DeflatedFont{
+		util.ParseFont(deflated.DeflatedFont{
 			Name:  "Invalid Font",
 			Bytes: deflatedBytes,
 		})
